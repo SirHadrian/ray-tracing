@@ -1,29 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DBG
+
 #include "main.h"
 #include "include/color.h"
+#include "include/logger.h"
 
 int
 main(void)
 {
-        int const BUFFSIZE = 600000;
+        size_t const BUFFSIZE = (IWIDTH * IHEIGHT * 4 * 3) + 12;
 
         char picture[BUFFSIZE];
-        int index = 0;
+        size_t index = 0;
 
-        index += sprintf(picture + index, "P3\n %d %d\n255\n", IWIDTH, IHEIGHT);
+        index += (size_t)snprintf(picture + index, BUFFSIZE - index, "P3\n %d %d\n255\n", IWIDTH, IHEIGHT);
 
-        for (int j = 0; j < IHEIGHT; ++j) {
-                for (int i = 0; i < IWIDTH; ++i) {
+        Dzu("BUFFSIZE: ", BUFFSIZE);
+
+        for (size_t j = 0; j < IHEIGHT; ++j) {
+                for (size_t i = 0; i < IWIDTH; ++i) {
                         double r = (double)i / (IWIDTH - 1);
                         double g = (double)j / (IHEIGHT - 1);
                         double b = 0;
                         struct color pixel_color = { r, g, b};
 
-                        index += sprintf(picture + index, "%d ", (int)(255.999 * pixel_color.r));
-                        index += sprintf(picture + index, "%d ", (int)(255.999 * pixel_color.g));
-                        index += sprintf(picture + index, "%d\n", (int)(255.999 * pixel_color.b));
+                        index += (size_t)snprintf(picture + index, BUFFSIZE - index, "%d ", (int)(255.999 * pixel_color.r));
+                        index += (size_t)snprintf(picture + index, BUFFSIZE - index, "%d ", (int)(255.999 * pixel_color.g));
+                        index += (size_t)snprintf(picture + index, BUFFSIZE - index, "%d\n", (int)(255.999 * pixel_color.b));
                 }
         }
 
@@ -32,6 +37,8 @@ main(void)
         if (!file) {
                 return EXIT_FAILURE;
         }
+
+        Dzu("INDEX: ", index);
 
         fwrite(picture, sizeof *picture, index, file);
 
