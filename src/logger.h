@@ -3,7 +3,7 @@
 
 enum tag {
         DEBUG = 0,
-        INFO
+        INFO,
 };
 
 #ifdef DBG
@@ -24,6 +24,6 @@ enum tag {
         do {} while(0)
 #endif
 
-void LOG(char const * tag, char const * message);
+extern void LOG(char const* tag, char const* message);
 
 #endif /* LOGGER_H */
