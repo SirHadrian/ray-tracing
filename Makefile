@@ -25,7 +25,7 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm $(TARGET) $(DEPFILES) $(OBJECTS)
+	rm $(TARGET) $(DEPFILES) $(OBJECTS) *.ppm
 
 package: clean
 	tar -cvzf dist.tar.gz *
