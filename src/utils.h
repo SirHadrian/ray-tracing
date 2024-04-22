@@ -3,15 +3,7 @@
 
 #include <string.h>
 
-#ifndef EXIT_SUCCESS
-#define EXIT_SUCCESS 0
-#endif
-
-#ifndef EXIT_FAILURE
-#define EXIT_FAILURE 1
-#endif
-
-#define ERROR_N_DIE(errno, msg) \
+#define ERR_N_DIE(errno, msg) \
         do { \
                 fprintf(stderr, "ERROR: %s:%d - %s | %s\n", __FILE__, __LINE__, \
                                 strerror(errno), msg); \

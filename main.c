@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DBG
+#define LOG_DEBUG
 
 #include "main.h"
 #include "src/color.h"
-#include "src/logger.h"
+#include "src/log.h"
 
 int
 main(void)
@@ -17,7 +17,7 @@ main(void)
 
         index += (size_t)snprintf(picture + index, BUFFSIZE - index, "P3\n %d %d\n255\n", IWIDTH, IHEIGHT);
 
-        Dzu("BUFFSIZE: ", BUFFSIZE);
+        DBG("BUFFSIZE: %lu\n", BUFFSIZE);
 
         for (size_t j = 0; j < IHEIGHT; ++j) {
                 for (size_t i = 0; i < IWIDTH; ++i) {
@@ -38,7 +38,7 @@ main(void)
                 return EXIT_FAILURE;
         }
 
-        Dzu("INDEX: ", index);
+        DBG("INDEX: %lu\n", index);
 
         fwrite(picture, sizeof *picture, index, file);
 
