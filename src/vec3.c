@@ -1,4 +1,4 @@
-#include "../include/vec3.h"
+#include "vec3.h"
 
 struct vec3
 mult(struct vec3 const v, double const t)

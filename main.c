@@ -4,8 +4,8 @@
 #define DBG
 
 #include "main.h"
-#include "include/color.h"
-#include "include/logger.h"
+#include "src/color.h"
+#include "src/logger.h"
 
 int
 main(void)

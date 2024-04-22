@@ -1,4 +1,4 @@
-#include "../include/ray.h"
+#include "ray.h"
 
 struct vec3
 at(struct ray const ray, double const t)
